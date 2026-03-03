@@ -1,0 +1,10 @@
+../Core/Src/stm32f4xx_gpio_driver.c:23:6:GPIO_PerClockControl	16	static
+../Core/Src/stm32f4xx_gpio_driver.c:59:6:GPIO_Init	24	static
+../Core/Src/stm32f4xx_gpio_driver.c:117:6:GPIO_DeInit	16	static
+../Core/Src/stm32f4xx_gpio_driver.c:152:9:GPIO_ReadFromInputPin	24	static
+../Core/Src/stm32f4xx_gpio_driver.c:171:10:GPIO_ReadFromInputPort	24	static
+../Core/Src/stm32f4xx_gpio_driver.c:190:6:GPIO_WriteToOutputPin	16	static
+../Core/Src/stm32f4xx_gpio_driver.c:213:6:GPIO_WriteToOutputPort	16	static
+../Core/Src/stm32f4xx_gpio_driver.c:230:6:GPIO_ToggleOutputPin	16	static
+../Core/Src/stm32f4xx_gpio_driver.c:247:6:GPIO_IRQConfig	16	static
+../Core/Src/stm32f4xx_gpio_driver.c:264:6:GPIO_IRQHanling	16	static
