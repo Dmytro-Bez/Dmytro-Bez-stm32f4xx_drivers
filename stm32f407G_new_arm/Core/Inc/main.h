@@ -7,7 +7,8 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
-#include"stm32f4xx_gpio_driver.h"
+#include <string.h>
+#include "stm32f4xx_gpio_driver.h"
 
 #ifdef __cplusplus
 }

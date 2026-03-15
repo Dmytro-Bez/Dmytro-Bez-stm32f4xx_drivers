@@ -47,8 +47,9 @@ void GPIO_ToggleOutputPin(GPIO_TypeDef *pGPIOx, uint8_t PinNumber);
 /*
  * IRQ налаштування і ISR запит
  */
-void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriorty,uint8_t EnonDi);
+void GPIO_IRQConfig(uint8_t IRQNumber,uint8_t EnonDi);
 void GPIO_IRQHanling(uint8_t PinNumber);
+void GPIO_IRQPrior(uint32_t IRQPriorty,uint8_t IRQNumber);
 
 /*
  *	@GPIO_PinNummber
@@ -144,5 +145,45 @@ void GPIO_IRQHanling(uint8_t PinNumber);
 #define GPIOG_PCLK_EN()	(RCC->AHB1ENR |= (1 << 6))
 #define GPIOH_PCLK_EN()	(RCC->AHB1ENR |= (1 << 7))
 #define GPIOI_PCLK_EN()	(RCC->AHB1ENR |= (1 << 8))
+
+#define SYSCFG_PCLK_EN()						(RCC->AHB2ENR |= (1 << 14))
+#define GPIO_BASEADD_TO_CODE(x)					((x == GPIOA)?0:\
+												(x == GPIOB)?1:\
+												(x == GPIOC)?2:\
+												(x == GPIOB)?3:\
+												(x == GPIOA)?4:\
+												(x == GPIOB)?5:\
+												(x == GPIOA)?6:\
+												(x == GPIOB)?7:0)
+#define IRQn_NO_EXTI0		6
+#define IRQn_NO_EXTI1		7
+#define IRQn_NO_EXTI2		8
+#define IRQn_NO_EXTI3		9
+#define IRQn_NO_EXTI4		10
+#define IRQn_NO_EXTI9_5		23
+#define IRQn_NO_EXTI15_10	40
+
+/*
+ * ARM CORTEX M4 NVIC ISERx регітри адрес
+ * */
+#define NVIC_ISER0			((__IO uint32_t*)0xE000E100)
+#define NVIC_ISER1			((__IO uint32_t*)0xE000E104)
+#define NVIC_ISER2			((__IO uint32_t*)0xE000E108)
+#define NVIC_ISER3			((__IO uint32_t*)0xE000E10C)
+
+/*
+ * ARM CORTEX M4 NVIC ICERx регітри адрес
+ * */
+#define NVIC_ICER0			((__IO uint32_t*)0xE000E180)
+#define NVIC_ICER1			((__IO uint32_t*)0xE000E184)
+#define NVIC_ICER2			((__IO uint32_t*)0xE000E188)
+#define NVIC_ICER3			((__IO uint32_t*)0xE000E18C)
+
+#define NVIC_PR_BASE_ADDR			((__IO uint32_t*)0xE000E400)
+#define NO_PR_BITS_IMPLEMENT		4
+
+#define NVIC_IRQ_PRI0				0
+#define NVIC_IRQ_PRI15				15
+
 
 #endif /* INC_STM32F4XX_GPIO_DRIVER_H_ */

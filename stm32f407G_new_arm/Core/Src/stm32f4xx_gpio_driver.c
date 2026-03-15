@@ -58,6 +58,7 @@ void GPIO_PerClockControl(GPIO_TypeDef *pGPIOx, uint8_t EnorDi){
  */
 void GPIO_Init(GPIO_Handler_t *pGPIOHandler){
 	uint32_t temp = 0;
+	uint8_t port_code = GPIO_BASEADD_TO_CODE(pGPIOHandler->pGPIOx);
 
 	GPIO_PerClockControl(pGPIOHandler->pGPIOx, ENABLE);
 
@@ -67,6 +68,26 @@ void GPIO_Init(GPIO_Handler_t *pGPIOHandler){
 		pGPIOHandler->pGPIOx->MODER |= temp;		//налаштування
 	} else{
 		//Тут ми будемо працювати з прериванням
+		if(pGPIOHandler->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_IT_FT){
+			//налаштування FTSR
+			EXTI->FTSR |= (1 << pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber);
+			EXTI->RTSR &= ~(1 << pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber);
+		} else if(pGPIOHandler->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_IT_RT){
+			//налаштування RTSR
+			EXTI->RTSR |= (1 << pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber);
+			EXTI->FTSR &= ~(1 << pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber);
+		}else if(pGPIOHandler->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_IT_RTF){
+			//налаштування обидва RFT i FTSR
+			EXTI->RTSR |= (1 << pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber);
+			EXTI->FTSR |= (1 << pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber);
+		}
+		//Налаштування порту SYSCFG_EXICR
+		uint8_t temp1 = pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber / 4;
+		uint8_t temp2 = pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber % 4;
+		SYSCFG_PCLK_EN();
+		SYSCFG->EXTICR[temp1] = port_code << (temp2 * 4);
+		//Дозволити преривання IMR
+		EXTI->IMR |= 1 << pGPIOHandler->GPIO_PinConfig.GPIO_PinNummber;
 	}
 /*
  * розібратись з налаштуванням швидкості порту!!!!
@@ -237,17 +258,59 @@ void GPIO_ToggleOutputPin(GPIO_TypeDef *pGPIOx, uint8_t PinNumber){
  * @brief		- Ця функція дозвляє налаштувати преривання
  *
  * @param[in]	- Використання номер преривання
- * @param[in]	- Використовує значення пріорітету преривання
  * @param[in]	- Використовує значення дозвіл/не дозвіл преривання
+ * @param[in]	-
  *
  * @return		- none
  *
  * @Note		- none
  */
-void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriorty,uint8_t EnonDi){
-
+void GPIO_IRQConfig(uint8_t IRQNumber,uint8_t EnonDi){
+	if(EnonDi == ENABLE){
+		if(IRQNumber <= 31){
+			//ISER0
+			*NVIC_ISER0 |= (1 << IRQNumber);
+		}else if(IRQNumber > 31 && IRQNumber < 64){
+			//ISER1
+			*NVIC_ISER1 |= (1 << IRQNumber % 32);
+		}else if(IRQNumber > 64 && IRQNumber < 96){
+			//ISER2
+			*NVIC_ISER3 |= (1 << IRQNumber % 64);
+		}
+	}else{
+		if(IRQNumber <= 31){
+					//ISER0
+			*NVIC_ICER0 |= (1 << IRQNumber);
+		}else if(IRQNumber > 31 && IRQNumber < 64){
+					//ISER1
+			*NVIC_ICER1 |= (1 << IRQNumber % 32);
+		}else if(IRQNumber > 64 && IRQNumber < 96){
+					//ISER2
+			*NVIC_ICER3 |= (1 << IRQNumber % 64);
+		}
+	}
 }
 
+/********************************************************************
+ * @fn			- GPIO_IRQPrior
+ *
+ * @brief		- Ця функція дозвляє встановити пріоріетет преривання
+ *
+ * @param[in]	- Використання пріоретету
+ * @param[in]	- Використання номер преривання
+ * @param[in]	-
+ *
+ * @return		- none
+ *
+ * @Note		- none
+ */
+void GPIO_IRQPrior(uint32_t IRQPriorty,uint8_t IRQNumber){
+	uint8_t iprx = IRQNumber / 4;
+	uint8_t iprx_sections = IRQNumber % 4;
+
+	uint8_t shift_amount = (8 * iprx_sections) + (8 - NO_PR_BITS_IMPLEMENT);
+	*(NVIC_PR_BASE_ADDR + iprx) |= (IRQPriorty << shift_amount);
+}
 /********************************************************************
  * @fn			- GPIO_IRQHanling
  *
@@ -262,5 +325,8 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriorty,uint8_t EnonDi){
  * @Note		- none
  */
 void GPIO_IRQHanling(uint8_t PinNumber){
-
+	//очистка PR резистора номера окнтакту порту
+	if(EXTI->PR & (1 << PinNumber)){
+		EXTI->PR |= (1 << PinNumber);
+	}
 }
