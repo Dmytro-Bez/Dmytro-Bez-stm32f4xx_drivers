@@ -5,22 +5,25 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/button_led_irq.c \
+../Core/Src/spi_tx_testing.c \
 ../Core/Src/stm32f4xx_gpio_driver.c \
+../Core/Src/stm32f4xx_spi_driver.c \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/system_stm32f4xx.c 
 
 OBJS += \
-./Core/Src/button_led_irq.o \
+./Core/Src/spi_tx_testing.o \
 ./Core/Src/stm32f4xx_gpio_driver.o \
+./Core/Src/stm32f4xx_spi_driver.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
 ./Core/Src/system_stm32f4xx.o 
 
 C_DEPS += \
-./Core/Src/button_led_irq.d \
+./Core/Src/spi_tx_testing.d \
 ./Core/Src/stm32f4xx_gpio_driver.d \
+./Core/Src/stm32f4xx_spi_driver.d \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
 ./Core/Src/system_stm32f4xx.d 
@@ -33,7 +36,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/button_led_irq.cyclo ./Core/Src/button_led_irq.d ./Core/Src/button_led_irq.o ./Core/Src/button_led_irq.su ./Core/Src/stm32f4xx_gpio_driver.cyclo ./Core/Src/stm32f4xx_gpio_driver.d ./Core/Src/stm32f4xx_gpio_driver.o ./Core/Src/stm32f4xx_gpio_driver.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
+	-$(RM) ./Core/Src/spi_tx_testing.cyclo ./Core/Src/spi_tx_testing.d ./Core/Src/spi_tx_testing.o ./Core/Src/spi_tx_testing.su ./Core/Src/stm32f4xx_gpio_driver.cyclo ./Core/Src/stm32f4xx_gpio_driver.d ./Core/Src/stm32f4xx_gpio_driver.o ./Core/Src/stm32f4xx_gpio_driver.su ./Core/Src/stm32f4xx_spi_driver.cyclo ./Core/Src/stm32f4xx_spi_driver.d ./Core/Src/stm32f4xx_spi_driver.o ./Core/Src/stm32f4xx_spi_driver.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
 
 .PHONY: clean-Core-2f-Src
 

@@ -58,6 +58,10 @@ void GPIO_PerClockControl(GPIO_TypeDef *pGPIOx, uint8_t EnorDi){
  */
 void GPIO_Init(GPIO_Handler_t *pGPIOHandler){
 	uint32_t temp = 0;
+
+	//Дозволити використання переферійного годинника
+	GPIO_PerClockControl(pGPIOHandler->pGPIOx, ENABLE);
+
 	uint8_t port_code = GPIO_BASEADD_TO_CODE(pGPIOHandler->pGPIOx);
 
 	GPIO_PerClockControl(pGPIOHandler->pGPIOx, ENABLE);

@@ -9,6 +9,8 @@ extern "C" {
 #include "stm32f4xx.h"
 #include <string.h>
 #include "stm32f4xx_gpio_driver.h"
+#include "stm32f4xx_spi_driver.h"
+
 
 #ifdef __cplusplus
 }
