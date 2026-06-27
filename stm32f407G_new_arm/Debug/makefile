@@ -60,7 +60,7 @@ main-build: new_f407G.elf secondary-outputs
 
 # Tool invocations
 new_f407G.elf new_f407G.map: $(OBJS) $(USER_OBJS) /home/dzimitori2012/STM32CubeIDE/workspace_1.18.1/new_f407G/STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "new_f407G.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/dzimitori2012/STM32CubeIDE/workspace_1.18.1/new_f407G/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_f407G.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "new_f407G.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/dzimitori2012/STM32CubeIDE/workspace_1.18.1/new_f407G/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_f407G.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

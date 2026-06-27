@@ -149,8 +149,27 @@ void SPI_SendDate(SPI_TypeDef *pSPIx, uint8_t *pTxBuffer, uint32_t Len){
  *
  * @Note		- none
  */
-void SPI_SPI_RecevieDate(SPI_TypeDef *pSPIx, uint8_t *pTxBuffer, uint32_t Len){
+void SPI_SPI_RecevieDate(SPI_TypeDef *pSPIx, uint8_t *pRxBuffer, uint32_t Len){
+	while(Len > 0){
+		//1. Чекаємо RХЕ пердачу
+		// while(!(pSPIx->SR & (1 << 1)));
+		while(SPI_GetFlagStatus(pSPIx,SPI_RXE_FLAG) == FLAG_RESET);
 
+		//2. Перевіряємо біт DFF в CR1
+		if(pSPIx->CR1 & (1 << SPI_CR1_DFF)){
+			//16 bit DFF
+			//1. Завантаження  даних в DR в RXE буфкр адреси
+			*((uint16_t*)pRxBuffer) = pSPIx->DR;
+			Len--;
+			Len--;
+			(uint16_t*)pRxBuffer++;
+		}else{
+			//8 bit DFF
+			*(pRxBuffer) = pSPIx->DR;
+			Len--;
+			pRxBuffer++;
+		}
+	}
 }
 
 /********************************************************************
@@ -183,7 +202,7 @@ void SPI_IRQConfig(uint8_t IRQNumber,uint8_t EnonDi){
  *
  * @Note		- none
  */
-void SPI_IRQHanling(SPI_Handler_t *pSPIHandler){
+void SPI_IRQHanling(SPI_Handler_t *pHandler){
 
 }
 
@@ -200,7 +219,7 @@ void SPI_IRQHanling(SPI_Handler_t *pSPIHandler){
  *
  * @Note		- none
  */
-void SPI_IRQPrior(uint32_t IRQPriorty,uint8_t IRQNumber){
+void SPI_IRQPriority(uint32_t IRQNumber,uint8_t IRQPriority){
 
 }
 
@@ -223,5 +242,49 @@ void SPI_PeripheralControl(SPI_TypeDef *pSPIx, uint8_t EnorDi){
 	}
 	else{
 		pSPIx->CR1 &= ~(1 << SPI_CR1_SPE);
+	}
+}
+
+/********************************************************************
+ * @fn			- SPI_SSIConfig
+ *
+ * @brief		- Ця функція дозвляє 
+ *
+ * @param[in]	- Використання пріоретету
+ * @param[in]	- Використання номер преривання
+ * @param[in]	-
+ *
+ * @return		- none
+ *
+ * @Note		- none
+ */
+void SPI_SSIConfig(SPI_TypeDef *pSPIx, uint8_t EnorDi){
+	if(EnorDi == ENABLE){
+		pSPIx->CR1 |= (1 << SPI_CR1_SSI);
+	}
+	else{
+		pSPIx->CR1 &= ~(1 << SPI_CR1_SSI);
+	}
+}
+
+/********************************************************************
+ * @fn			- SPI_SSOEConfig
+ *
+ * @brief		- Ця функція дозвляє 
+ *
+ * @param[in]	- Використання пріоретету
+ * @param[in]	- Використання номер преривання
+ * @param[in]	-
+ *
+ * @return		- none
+ *
+ * @Note		- none
+ */
+void SPI_SSOEConfig(SPI_TypeDef *pSPIx, uint8_t EnorDi){
+	if(EnorDi == ENABLE){
+		pSPIx->CR2 |= (1 << SPI_CR2_SSOE);
+	}
+	else{
+		pSPIx->CR2 &= ~(1 << SPI_CR2_SSOE);
 	}
 }

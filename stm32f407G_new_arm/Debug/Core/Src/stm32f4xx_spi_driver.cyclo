@@ -3,8 +3,10 @@
 ../Core/Src/stm32f4xx_spi_driver.c:80:9:SPI_GetFlagStatus	2
 ../Core/Src/stm32f4xx_spi_driver.c:99:6:SPI_DeInit	1
 ../Core/Src/stm32f4xx_spi_driver.c:116:6:SPI_SendDate	3
-../Core/Src/stm32f4xx_spi_driver.c:152:6:SPI_SPI_RecevieDate	1
-../Core/Src/stm32f4xx_spi_driver.c:169:6:SPI_IRQConfig	1
-../Core/Src/stm32f4xx_spi_driver.c:186:6:SPI_IRQHanling	1
-../Core/Src/stm32f4xx_spi_driver.c:203:6:SPI_IRQPrior	1
-../Core/Src/stm32f4xx_spi_driver.c:220:6:SPI_PeripheralControl	2
+../Core/Src/stm32f4xx_spi_driver.c:152:6:SPI_SPI_RecevieDate	3
+../Core/Src/stm32f4xx_spi_driver.c:188:6:SPI_IRQConfig	1
+../Core/Src/stm32f4xx_spi_driver.c:205:6:SPI_IRQHanling	1
+../Core/Src/stm32f4xx_spi_driver.c:222:6:SPI_IRQPriority	1
+../Core/Src/stm32f4xx_spi_driver.c:239:6:SPI_PeripheralControl	2
+../Core/Src/stm32f4xx_spi_driver.c:261:6:SPI_SSIConfig	2
+../Core/Src/stm32f4xx_spi_driver.c:283:6:SPI_SSOEConfig	2

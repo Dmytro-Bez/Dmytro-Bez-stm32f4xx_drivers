@@ -46,7 +46,7 @@ void SPI_DeInit(SPI_TypeDef *pSPIx);
  * Передача і запис даних SPI
  */
 void SPI_SendDate(SPI_TypeDef *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
-void SPI_SPI_RecevieDate(SPI_TypeDef *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
+void SPI_SPI_RecevieDate(SPI_TypeDef *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
 
 /*
  * Переривання SPI ISR
@@ -59,6 +59,15 @@ void SPI_IRQPrior(uint32_t IRQPriorty,uint8_t IRQNumber);
  *Інші переферійні ІРА
  */
 void SPI_PeripheralControl(SPI_TypeDef *pSPIx, uint8_t EnorDi);
+void SPI_SSIConfig(SPI_TypeDef *pSPIx, uint8_t EnorDi);
+void SPI_SSOEConfig(SPI_TypeDef *pSPIx, uint8_t EnorDi);
+
+/*
+ * IRQ налаштування і ISR запит
+ */
+void SPI_IRQConfig(uint8_t IRQNumber,uint8_t EnonDi);
+void SPI_IRQHanling(SPI_Handler_t *pHandler);
+void SPI_IRQPriority(uint32_t IRQNumber,uint8_t IRQPriority);
 
 /*
  * Макрос дозволу таймера для GPIOx переферії
@@ -123,7 +132,7 @@ void SPI_PeripheralControl(SPI_TypeDef *pSPIx, uint8_t EnorDi);
 #define SPI_SSM_DI						0
 
 #define SPI_TXE_FLAG					(1 << SPI_SR_TXE)
-#define SPI_RXE_FLAG					(1 << SPI_SR_RXE)
+#define SPI_RXE_FLAG					(1 << SPI_SR_RXNE)
 #define SPI_BUSY_FLAG					(1 << SPI_SR_BSY)
 
 #define FLAG_RESET			RESET

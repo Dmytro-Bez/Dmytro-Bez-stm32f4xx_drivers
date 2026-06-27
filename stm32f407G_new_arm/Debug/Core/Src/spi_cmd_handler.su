@@ -1,0 +1,6 @@
+../Core/Src/spi_cmd_handler.c:29:6:SPI2_GPIOInits	24	static
+../Core/Src/spi_cmd_handler.c:51:6:SPI2_Init	24	static
+../Core/Src/spi_cmd_handler.c:65:6:GPIO_BUTTON	24	static
+../Core/Src/spi_cmd_handler.c:76:9:SPI_VerifyResponse	16	static
+../Core/Src/spi_cmd_handler.c:85:6:delay	16	static
+../Core/Src/spi_cmd_handler.c:89:5:main	24	static
