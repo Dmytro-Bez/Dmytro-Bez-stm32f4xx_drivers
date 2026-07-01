@@ -5,22 +5,25 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/spi_cmd_handler.c \
+../Core/Src/i2c_tx.c \
 ../Core/Src/stm32f4xx_gpio_driver.c \
+../Core/Src/stm32f4xx_i2c_driver.c \
 ../Core/Src/stm32f4xx_spi_driver.c \
 ../Core/Src/syscalls.c \
 ../Core/Src/system_stm32f4xx.c 
 
 OBJS += \
-./Core/Src/spi_cmd_handler.o \
+./Core/Src/i2c_tx.o \
 ./Core/Src/stm32f4xx_gpio_driver.o \
+./Core/Src/stm32f4xx_i2c_driver.o \
 ./Core/Src/stm32f4xx_spi_driver.o \
 ./Core/Src/syscalls.o \
 ./Core/Src/system_stm32f4xx.o 
 
 C_DEPS += \
-./Core/Src/spi_cmd_handler.d \
+./Core/Src/i2c_tx.d \
 ./Core/Src/stm32f4xx_gpio_driver.d \
+./Core/Src/stm32f4xx_i2c_driver.d \
 ./Core/Src/stm32f4xx_spi_driver.d \
 ./Core/Src/syscalls.d \
 ./Core/Src/system_stm32f4xx.d 
@@ -33,7 +36,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/spi_cmd_handler.cyclo ./Core/Src/spi_cmd_handler.d ./Core/Src/spi_cmd_handler.o ./Core/Src/spi_cmd_handler.su ./Core/Src/stm32f4xx_gpio_driver.cyclo ./Core/Src/stm32f4xx_gpio_driver.d ./Core/Src/stm32f4xx_gpio_driver.o ./Core/Src/stm32f4xx_gpio_driver.su ./Core/Src/stm32f4xx_spi_driver.cyclo ./Core/Src/stm32f4xx_spi_driver.d ./Core/Src/stm32f4xx_spi_driver.o ./Core/Src/stm32f4xx_spi_driver.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
+	-$(RM) ./Core/Src/i2c_tx.cyclo ./Core/Src/i2c_tx.d ./Core/Src/i2c_tx.o ./Core/Src/i2c_tx.su ./Core/Src/stm32f4xx_gpio_driver.cyclo ./Core/Src/stm32f4xx_gpio_driver.d ./Core/Src/stm32f4xx_gpio_driver.o ./Core/Src/stm32f4xx_gpio_driver.su ./Core/Src/stm32f4xx_i2c_driver.cyclo ./Core/Src/stm32f4xx_i2c_driver.d ./Core/Src/stm32f4xx_i2c_driver.o ./Core/Src/stm32f4xx_i2c_driver.su ./Core/Src/stm32f4xx_spi_driver.cyclo ./Core/Src/stm32f4xx_spi_driver.d ./Core/Src/stm32f4xx_spi_driver.o ./Core/Src/stm32f4xx_spi_driver.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/system_stm32f4xx.cyclo ./Core/Src/system_stm32f4xx.d ./Core/Src/system_stm32f4xx.o ./Core/Src/system_stm32f4xx.su
 
 .PHONY: clean-Core-2f-Src
 

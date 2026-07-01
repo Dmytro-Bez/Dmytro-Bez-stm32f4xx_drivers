@@ -185,5 +185,4 @@ void GPIO_IRQPrior(uint32_t IRQPriorty,uint8_t IRQNumber);
 #define NVIC_IRQ_PRI0				0
 #define NVIC_IRQ_PRI15				15
 
-
 #endif /* INC_STM32F4XX_GPIO_DRIVER_H_ */

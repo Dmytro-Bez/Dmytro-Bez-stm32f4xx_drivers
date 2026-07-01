@@ -70,8 +70,11 @@
 							<tool id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec.871397781" name="MCU Output Converter Motorola S-rec with symbols" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec"/>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.210556655.1388219522" name="spi_cmd_handler.c" rcbsApplicability="disable" resourcePath="Core/Src/spi_cmd_handler.c" toolsToInvoke="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.177719886.142949697">
+						<tool id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.177719886.142949697" name="MCU/MPU GCC Compiler" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.177719886"/>
+					</fileInfo>
 					<sourceEntries>
-						<entry excluding="Src/sysmem.c|Src/spi_tx_arduino.c|Src/spi_tx_testing.c|Src/spi_connection.c|Src/button_led_irq.c|Src/toggle_led.c|Src/button_led.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+						<entry excluding="Src/spi_cmd_handler.c|Src/sysmem.c|Src/spi_tx_arduino.c|Src/spi_tx_testing.c|Src/spi_connection.c|Src/button_led_irq.c|Src/toggle_led.c|Src/button_led.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>

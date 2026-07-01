@@ -2,8 +2,7 @@
 #define INC_STM32F4XX_SPI_DRIVER_H_
 
 #include"stm32f407xx.h"
-
-
+#include <main.h>
 
 /*
  * Структура для конфігурації SPx переферії
@@ -24,6 +23,12 @@ typedef struct{
 typedef struct{
 	SPI_TypeDef  *pSPIx;
 	SPI_Config_t SPIConfig;
+	uint8_t *pTxBuffer;			/* !< TX буфер адреси> */
+	uint8_t *pRxBuffer;			/* !< RX буфер адреси> */
+	uint32_t TxLen;				/* !<TX len> */
+	uint32_t RxLen;				/* !<RX len> */
+	uint8_t TxState;			/* !<TX state> */
+	uint8_t RxState;			/* !<RX state> */
 }SPI_Handler_t;
 
 /****************************************************
@@ -46,14 +51,17 @@ void SPI_DeInit(SPI_TypeDef *pSPIx);
  * Передача і запис даних SPI
  */
 void SPI_SendDate(SPI_TypeDef *pSPIx, uint8_t *pTxBuffer, uint32_t Len);
-void SPI_SPI_RecevieDate(SPI_TypeDef *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
+void SPI_RecevieDate(SPI_TypeDef *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
+
+uint8_t SPI_SendDateIT(SPI_Handler_t *pSPIHand, uint8_t *pTxBuffer, uint32_t Len);
+uint8_t SPI_RecevieDateIT(SPI_Handler_t *pSPIHand, uint8_t *pRxBuffer, uint32_t Len);
 
 /*
  * Переривання SPI ISR
  */
-void SPI_IRQConfig(uint8_t IRQNumber,uint8_t EnonDi);
+void SPI_IRQInterruptConfig(uint8_t IRQNumber,uint8_t EnonDi);
 void SPI_IRQHanling(SPI_Handler_t *pSPIHandler);
-void SPI_IRQPrior(uint32_t IRQPriorty,uint8_t IRQNumber);
+void SPI_IRQPriorConfig(uint32_t IRQPriorty,uint8_t IRQNumber);
 
 /*
  *Інші переферійні ІРА
@@ -61,13 +69,10 @@ void SPI_IRQPrior(uint32_t IRQPriorty,uint8_t IRQNumber);
 void SPI_PeripheralControl(SPI_TypeDef *pSPIx, uint8_t EnorDi);
 void SPI_SSIConfig(SPI_TypeDef *pSPIx, uint8_t EnorDi);
 void SPI_SSOEConfig(SPI_TypeDef *pSPIx, uint8_t EnorDi);
-
-/*
- * IRQ налаштування і ISR запит
- */
-void SPI_IRQConfig(uint8_t IRQNumber,uint8_t EnonDi);
-void SPI_IRQHanling(SPI_Handler_t *pHandler);
-void SPI_IRQPriority(uint32_t IRQNumber,uint8_t IRQPriority);
+void SPI_ClearOVRFlag(SPI_TypeDef *pSPIx);
+void SPI_CloseTransmisson(SPI_Handler_t *pSPIHandler);
+void SPI_CloseReception(SPI_Handler_t *pSPIHandler);
+void SPI_ApplicationEventCallback(SPI_Handler_t *pSPIHandler, uint8_t AppEv);
 
 /*
  * Макрос дозволу таймера для GPIOx переферії
@@ -76,10 +81,10 @@ void SPI_IRQPriority(uint32_t IRQNumber,uint8_t IRQPriority);
 #define SPI2_PCLK_EN() (RCC->APB1ENR |= (1 << 14))
 #define SPI3_PCLK_EN() (RCC->APB1ENR |= (1 << 15))
 
-#define ENABLE				1
-#define DISEBALE 			0
-#define SET					ENABLE
-#define RESET				DISEBALE
+//#define ENABLE							1
+//#define DISEBALE 						0
+//#define SET								ENABLE
+//#define RESET							DISEBALE
 
 /*
  * @SPI_DeviceMode
@@ -135,6 +140,15 @@ void SPI_IRQPriority(uint32_t IRQNumber,uint8_t IRQPriority);
 #define SPI_RXE_FLAG					(1 << SPI_SR_RXNE)
 #define SPI_BUSY_FLAG					(1 << SPI_SR_BSY)
 
-#define FLAG_RESET			RESET
-#define FLAG_SET			SET
+#define FLAG_RESET						RESET
+#define FLAG_SET						SET
+
+#define SPI_READ						0
+#define SPI_BUSY_IN_RX					1
+#define SPI_BUSY_IN_TX					2
+
+#define SPI_EVENT_TX_CMPLT				1
+#define SPI_EVENT_RX_CMPLT				2
+#define SPI_EVENT_OVR_ERR				3
+#define SPI_EVENT_CRC_ERR				4
 #endif /* INC_STM32F4XX_SPI_DRIVER_H_ */
