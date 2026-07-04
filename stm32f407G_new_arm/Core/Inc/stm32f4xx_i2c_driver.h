@@ -3,12 +3,15 @@
 
 #include"stm32f407xx.h"
 
+#define I2C_FLAG_SB                  (1 << I2C_SR1_SB)
+#define I2C_FLAG_TXE                 (1 << I2C_SR1_TXE)
+#define I2C_FLAG_RXNE                (1 << I2C_SR1_TXE)
 /**************************************************************
  *  Дерективи конролеру на дозвіл тактування І2С шини
 ***************************************************************/
 #define I2C1_PCLK_EN()               (RCC->APB2ENR |= (1 << 21))
 #define I2C2_PCLK_EN()               (RCC->APB2ENR |= (1 << 22))
-#define I2C2_PCLK_EN()               (RCC->APB2ENR |= (1 << 23))
+#define I2C3_PCLK_EN()               (RCC->APB2ENR |= (1 << 23))
 
 /**************************************************************
  *  Конфігурайційна структура переферії І2С 
@@ -67,7 +70,7 @@ void I2C_DeInit(I2C_TypeDef *pI2Cx);
 /*
  * Передача і запис даних SPI
  */
-
+void I2C_MasterSendDate(I2C_Handler_t *pI2CHandler, uint8_t *pTxBuffer, uint32_t Len, uint8_t SlavAdd);
 
 /*
  * Переривання SPI ISR

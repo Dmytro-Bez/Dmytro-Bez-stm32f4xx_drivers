@@ -1,3 +1,7 @@
-../Core/Src/stm32f4xx_i2c_driver.c:16:6:I2C_PerClockControl	1
-../Core/Src/stm32f4xx_i2c_driver.c:33:6:I2C_Init	1
-../Core/Src/stm32f4xx_i2c_driver.c:50:6:I2C_DeInit	1
+../Core/Src/stm32f4xx_i2c_driver.c:6:17:RCC_GetPLLOutputClock	1
+../Core/Src/stm32f4xx_i2c_driver.c:10:17:RCC_GETPCLK1Value	6
+../Core/Src/stm32f4xx_i2c_driver.c:53:6:I2C_PerClockControl	1
+../Core/Src/stm32f4xx_i2c_driver.c:70:6:I2C_Init	3
+../Core/Src/stm32f4xx_i2c_driver.c:122:6:I2C_DeInit	1
+../Core/Src/stm32f4xx_i2c_driver.c:141:13:I2C_GenerateStartCondition	1
+../Core/Src/stm32f4xx_i2c_driver.c:145:6:I2C_MasterSendDate	2
