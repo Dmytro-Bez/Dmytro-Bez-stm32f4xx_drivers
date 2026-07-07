@@ -1,7 +1,7 @@
 #ifndef INC_STM32F4XX_GPIO_DRIVER_H_
 #define INC_STM32F4XX_GPIO_DRIVER_H_
 
-#include"stm32f407xx.h"
+#include"stm32f4xxx.h"
 
 typedef struct{
 	uint8_t GPIO_PinNummber;			//Значення з @GPIO_PinNummber

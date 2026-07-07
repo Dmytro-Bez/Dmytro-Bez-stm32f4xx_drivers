@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stm32f4xx_gpio_driver.h"
 
 void delay_t(void){
 	for (int32_t i = 0; i < 500000/2; i++);
@@ -32,6 +32,7 @@ int main(void)
 		if(GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_NO_0) == BUT_PRESS){
 			delay_t();
 			GPIO_ToggleOutputPin(GPIOD,GPIO_PIN_NO_12);
+			printf("Led On,press button 0\n");
 		}
 	}
 }

@@ -1,7 +1,7 @@
 #ifndef INC_STM32F4XX_I2C_DRIVER_H_
 #define INC_STM32F4XX_I2C_DRIVER_H_
 
-#include"stm32f407xx.h"
+#include"stm32f4xxx.h"
 
 #define I2C_FLAG_SB                  (1 << I2C_SR1_SB)
 #define I2C_FLAG_TXE                 (1 << I2C_SR1_TXE)
