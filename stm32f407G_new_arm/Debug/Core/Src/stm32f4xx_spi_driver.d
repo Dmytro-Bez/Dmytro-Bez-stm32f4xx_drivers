@@ -5,7 +5,9 @@ Core/Src/stm32f4xx_spi_driver.o: ../Core/Src/stm32f4xx_spi_driver.c \
  ../Drivers/CMSIS/mpu_armv7.h ../Drivers/CMSIS/system_stm32f4xx.h \
  ../Core/Inc/main.h ../Drivers/CMSIS/stm32f4xx.h \
  ../Drivers/CMSIS/stm32f407xx.h ../Core/Inc/stm32f4xx_gpio_driver.h \
- ../Core/Inc/stm32f4xx_spi_driver.h ../Core/Inc/stm32f4xx_i2c_driver.h
+ ../Core/Inc/stm32f4xx_spi_driver.h ../Core/Inc/stm32f4xx_i2c_driver.h \
+ ../Core/Inc/stm32f4xx_gpio_driver.h ../Core/Inc/stm32f4xx_usart_driver.h \
+ ../Core/Inc/stm32f4xx_rcc_driver.h
 ../Core/Inc/stm32f4xx_spi_driver.h:
 ../Drivers/CMSIS/stm32f407xx.h:
 ../Drivers/CMSIS/core_cm4.h:
@@ -20,3 +22,6 @@ Core/Src/stm32f4xx_spi_driver.o: ../Core/Src/stm32f4xx_spi_driver.c \
 ../Core/Inc/stm32f4xx_gpio_driver.h:
 ../Core/Inc/stm32f4xx_spi_driver.h:
 ../Core/Inc/stm32f4xx_i2c_driver.h:
+../Core/Inc/stm32f4xx_gpio_driver.h:
+../Core/Inc/stm32f4xx_usart_driver.h:
+../Core/Inc/stm32f4xx_rcc_driver.h:

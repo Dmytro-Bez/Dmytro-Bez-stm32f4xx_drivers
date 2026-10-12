@@ -203,9 +203,7 @@ void SPI_IRQInterruptConfig(uint8_t IRQNumber,uint8_t EnonDi){
  *
  * @Note		- none
  */
-__weak void SPI_ApplicationEventCallback(SPI_Handler_t *pSPIHandler, uint8_t AppEv){
-
-}
+void SPI_ApplicationEventCallback(SPI_Handler_t *pSPIHandler, uint8_t AppEv);
 
 static void spi_ovr_err_interrupt_handler(SPI_Handler_t *pSPIHandler){
 	uint8_t temp;

@@ -1,0 +1,8 @@
+../Core/Src/rtc_lcd.c:14:5:main	32	static
+../Core/Src/rtc_lcd.c:69:13:mdelay	24	static
+../Core/Src/rtc_lcd.c:73:7:get_to_of_week	56	static
+../Core/Src/rtc_lcd.c:79:7:time_to_string	16	static
+../Core/Src/rtc_lcd.c:93:6:nummber_to_string	16	static
+../Core/Src/rtc_lcd.c:103:7:date_to_string	16	static
+../Core/Src/rtc_lcd.c:116:6:init_systick_timer	32	static
+../Core/Src/rtc_lcd.c:137:6:SysTick_Handler	32	static

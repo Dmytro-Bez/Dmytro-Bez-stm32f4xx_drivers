@@ -140,9 +140,6 @@ void SPI_ApplicationEventCallback(SPI_Handler_t *pSPIHandler, uint8_t AppEv);
 #define SPI_RXE_FLAG					(1 << SPI_SR_RXNE)
 #define SPI_BUSY_FLAG					(1 << SPI_SR_BSY)
 
-#define FLAG_RESET						RESET
-#define FLAG_SET						SET
-
 #define SPI_READ						0
 #define SPI_BUSY_IN_RX					1
 #define SPI_BUSY_IN_TX					2

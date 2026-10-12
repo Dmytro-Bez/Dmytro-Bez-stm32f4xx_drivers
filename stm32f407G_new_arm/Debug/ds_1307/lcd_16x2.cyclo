@@ -1,0 +1,11 @@
+../ds_1307/lcd_16x2.c:3:13:mdelay	2
+../ds_1307/lcd_16x2.c:7:13:udelay	2
+../ds_1307/lcd_16x2.c:11:13:lcd_eneble	1
+../ds_1307/lcd_16x2.c:19:13:write_4_bits	1
+../ds_1307/lcd_16x2.c:28:6:lcd_set_cursore	3
+../ds_1307/lcd_16x2.c:44:6:lcd_send_command	1
+../ds_1307/lcd_16x2.c:54:6:lcd_print_char	1
+../ds_1307/lcd_16x2.c:64:6:lcd_print_string	2
+../ds_1307/lcd_16x2.c:71:6:lcd_display_clear	1
+../ds_1307/lcd_16x2.c:76:6:lcd_display_return_home	1
+../ds_1307/lcd_16x2.c:81:6:lcd_init	1
